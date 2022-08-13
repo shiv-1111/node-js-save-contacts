@@ -8,9 +8,10 @@ app.use(bodyparser.json());
 
 app.post('/contact',(req,res) => {
     console.log(req.body);
-    let temp = Object.keys(req.body);
-    for (let i = 0;i <temp.length;i++){
-    fs.appendFile('contact.txt',`${temp[i]} : ${req.body[temp[i]]} \n`, 
+    
+    for (let key in req.body)
+    {
+    fs.appendFile('contact.txt',`${key} : ${req.body[key]} \n`, 
     (err) => {
         if (err) {
             console.log("Write Unsuccessfull !")
